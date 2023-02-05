@@ -20,8 +20,14 @@ app.get('/', function (req, res) {
 });
 
 // your first API endpoint...
-app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
+app.get('/api/whoami', function (req, res) {
+  // Los datos del usuario se encuentran en el request
+  const datosUsuario = {
+    ipaddress: req.hostname,
+    language: req.get( 'accept-language' ),
+    software: req.get( 'user-agent' )
+  }
+  res.json( datosUsuario );
 });
 
 // listen for requests :)
